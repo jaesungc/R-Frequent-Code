@@ -1,6 +1,6 @@
 # Packages to be installed
 package.list <- 
-  c('dplyr','ggplot2','data.table','stringr','XML','rvest','httr','tidyverse')
+  c('dplyr','ggplot2','data.table','stringr','XML','rvest','httr','tidyverse','gmailr','lubridate','RSelenium')
 
 # Not installed packages among needed packages
 not.found.packages <- 
