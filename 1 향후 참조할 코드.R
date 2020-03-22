@@ -2,6 +2,7 @@
 library(lubridate)
 
 t <- Sys.time()
+date <- format(t,"%Y%m%d")
 year<-year(t)
 month<-month(t)
 day<-day(t)
@@ -10,6 +11,7 @@ min<-minute(t)
 sec<-second(t) %>% round()
 
 t
+date
 year;month;day;hour;min;sec
 
 
