@@ -1,3 +1,11 @@
+## URL을 생성하는 효율적인 코드: XML2::url_absolute
+lego_url <- "http://www.imdb.com/title/tt1490017/"
+link <- "name101" %>% 
+  url_absolute(lego_url)
+link
+
+
+
 ## 날짜, 시간 생성하기
 library(lubridate)
 
