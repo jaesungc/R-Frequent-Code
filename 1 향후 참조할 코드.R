@@ -1,3 +1,18 @@
+## 날짜, 시간 생성하기
+library(lubridate)
+
+t <- Sys.time()
+year<-year(t)
+month<-month(t)
+day<-day(t)
+hour<-hour(t)
+min<-minute(t)
+sec<-second(t) %>% round()
+
+t
+year;month;day;hour;min;sec
+
+
 ## Regression 결과 내보내기
 install.packages("outreg")
 library("outreg")
