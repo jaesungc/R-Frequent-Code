@@ -1,0 +1,38 @@
+## 김영우 선생님 Sample Code for Corona19 Dataset
+## https://github.com/youngwoos/corona19
+
+remotes::install_github("youngwoos/corona19")
+library(corona19)
+time <- getdata("time")
+time
+
+library(ggplot2) 
+fig <- ggplot(data = time, aes(x = date, y = confirmed)) + 
+  geom_area(color="darkblue", fill="lightblue") + 
+  scale_x_date(date_breaks = "weeks" , date_labels = "%m-%d")
+
+library(plotly)
+ggplotly(fig)
+
+
+# patient
+patient <- getdata("patient") 
+patient
+
+ggplot(data = patient, aes(x = 2020-birth_year, fill = sex, colour = sex)) + 
+  geom_density(alpha = 0.3) +
+  xlab("age")
+
+
+# route
+route <- getdata("route") 
+
+library(dplyr)
+cnt_province <- route %>% 
+  count(province, sort = T) %>% 
+  head(10)
+
+ggplot(cnt_province, aes(x = reorder(province, n), y = n)) + 
+  geom_col() + 
+  coord_flip() +
+  xlab("province")
