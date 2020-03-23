@@ -1,3 +1,11 @@
+## ggsave() 명령어로 그림을 파일에 저장: ggplot2 팩키지를 사용하는 경우, 그림을 ggsave() 명령어로 파일에 저장한다.
+ggsave("my-awesome-graph.png")
+
+p <- ggplot(gapminder, aes(x = year, y = lifeExp)) + geom_jitter()
+ggsave("fig-io-practice.png", p)
+
+
+
 ## URL을 생성하는 효율적인 코드: XML2::url_absolute
 lego_url <- "http://www.imdb.com/title/tt1490017/"
 link <- "name101" %>% 
