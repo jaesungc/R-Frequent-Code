@@ -6,6 +6,15 @@ ggsave("fig-io-practice.png", p)
 
 
 
+# Remove some rows which satisfying conditions
+Stack.final<-Stack %>% filter(x1!="합계")
+
+# Replace all commas into empty
+myFun <- function(x) {gsub(",","",x)}
+D2<-apply(D1, 2, myFun) %>% data.frame()
+
+
+
 ## URL을 생성하는 효율적인 코드: XML2::url_absolute
 lego_url <- "http://www.imdb.com/title/tt1490017/"
 link <- "name101" %>% 
@@ -31,6 +40,7 @@ date
 year;month;day;hour;min;sec
 
 
+
 ## Regression 결과 내보내기
 install.packages("outreg")
 library("outreg")
@@ -54,6 +64,7 @@ fitlist6 <- list(OLS = lm(log(packs) ~ log(rprice) + log(rincome),
                                log(population) + tdiff + I(tax/cpi),
                              data = CigarettesSW, subset = year == "1995"))
 outreg(fitlist6)
+
 
 
 ## Youtube 검색 결과 보기
