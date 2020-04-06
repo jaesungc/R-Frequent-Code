@@ -1,3 +1,8 @@
+## You can do both by restarting your R session in RStudio with the keyboard shortcut 
+## Ctrl+Shift+F10 
+## which will totally clear your global environment of both objects and loaded packages.
+
+
 ## ggsave() 명령어로 그림을 파일에 저장: ggplot2 팩키지를 사용하는 경우, 그림을 ggsave() 명령어로 파일에 저장한다.
 ggsave("my-awesome-graph.png")
 
