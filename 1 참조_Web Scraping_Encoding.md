@@ -34,7 +34,7 @@ names(tab) <- str_c("v",(1:n.col))
 
 
 
-### [이현열, Post 방식 예제: 기업공시채널에서 오늘의 공시 불러오기
+### [이현열, Post 방식 예제: 기업공시채널에서 오늘의 공시 불러오기]
 (https://hyunyulhenry.github.io/quant_cookbook/%ED%81%AC%EB%A1%A4%EB%A7%81-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0.html)
 ```r
 Sys.setlocale("LC_ALL", "English")
