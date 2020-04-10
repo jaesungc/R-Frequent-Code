@@ -16,7 +16,7 @@ library(XML)
 ```
 
 
-### Windows를 사용하는 경우 외부 파일로 기록했다가 다시 읽어들이기
+### Windows를 사용하는 경우 source file을 하드에 저장했다가 다시 읽어들이기
 ```r
 library(XML)
 ```
