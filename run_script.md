@@ -15,7 +15,7 @@ R CMD BATCH "call_R_script.R"
 환경변수 PATH에 특정 폴더를 추가하는 방법에 대한 상세한 설명은 아래 블로그 글을 참고하면 됨 <br>
 [환경변수에 실행 파일이 들어있는 폴더를 PATH에 추가하기](https://rootblog.tistory.com/206)
 
-#### 2. Call a R script in R: **call_R_script.R**
+#### 2. Call R script in R: **call_R_script.R**
 ```r
 setwd("D:/Folder_Name")
 source('main_script.R', encoding = 'UTF-8', echo=TRUE)
