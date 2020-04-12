@@ -10,6 +10,10 @@ d:
 cd D:\Folder_Name
 R CMD BATCH "call_R_script.R"
 ```
+위 과정을 수행하기 위해서는 R 실행파일이 있는 하드디스크의 경로를 환경변수에 추가해야 함. 환경변수에 경로를 추가하는 방법은 다음 글을 참고하면 됨
+[환경변수에 실행 파일 경로 추가하기](https://rootblog.tistory.com/206)
+
+<br>
 
 #### 2. Call a R script in R: **call_R_script.R**
 ```r
