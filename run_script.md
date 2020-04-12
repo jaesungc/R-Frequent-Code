@@ -16,3 +16,12 @@ R CMD BATCH "call_R_script.R"
 setwd("D:/Folder_Name")
 source('main_script.R', encoding = 'UTF-8', echo=TRUE)
 ```
+
+<br>
+
+### R Markdwon으로 작성된 Rmd 파일을 실행시키기
+```r
+today <- format(Sys.Date(),"%Y%m%d")
+outfile <- str_c("Daily_Report_", today, ".html")
+rmarkdown::render('file_name.Rmd', output_file=outfile)
+```
