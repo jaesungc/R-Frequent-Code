@@ -27,3 +27,12 @@ start.date<-today
 start.date<-as.Date(end.date) %m-% months(1)
 start.date<-as.Date(end.date) %m-% days(1)
 ```
+
+#### Time Zone을 고려하기
+```
+library(lubridate)
+
+time.system <- Sys.time()
+time.seoul <- with_tz(time.system, tzone="Asia/Seoul")
+time.EDT <- with_tz(time.system, tzone="America/New_York")
+```
