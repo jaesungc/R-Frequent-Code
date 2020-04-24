@@ -36,3 +36,10 @@ time.system <- Sys.time()
 time.seoul <- with_tz(time.system, tzone="Asia/Seoul")
 time.EDT <- with_tz(time.system, tzone="America/New_York")
 ```
+
+#### Date 변수가 today로 나온 경우를 날짜 형태로 변경하기
+```r
+time.system <- Sys.time()
+  time.seoul <- with_tz(time.system, tzone="Asia/Seoul") %>% format("%y.%m.%d")
+  date[date=="Today"] <- time.seoul
+```
