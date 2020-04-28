@@ -35,6 +35,9 @@ library(lubridate)
 time.system <- Sys.time()
 time.seoul <- with_tz(time.system, tzone="Asia/Seoul")
 time.EDT <- with_tz(time.system, tzone="America/New_York")
+
+today <- Sys.time() %>% format("%Y%m%d")
+today.seoul <- Sys.time() %>% with_tz(tzone="Asia/Seoul") %>% format("%Y%m%d")
 ```
 
 #### Date 변수가 Today로 나온 경우를 날짜 형태로 변경하기
