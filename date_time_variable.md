@@ -49,6 +49,14 @@ time.system <- Sys.time()
 
 #### 네이버 뉴스에서 기사 제공 시간이, "**시간 전, 1일 전, 2일 전, ..." 등으로 표기된 경우 날짜로 변경하기
 ```r
+df2 <- df1 %>% 
+  mutate(date = str_remove(date, "Korea언론사|Korea|foodnews")) %>% 
+  mutate(date = str_trim(str_remove(date, "^.*면.단"))) %>% 
+  mutate(date = str_trim(str_remove(date, "^.*면")))
+
+# df3 <- df2 %>% 
+#   mutate(date = str_extract(date, "\\d{4}\\.\\d{2}\\.\\d{2}\\.$")) 
+
 today.seoul <- Sys.time() %>% with_tz(tzone="Asia/Seoul")
 today.seoul
 
