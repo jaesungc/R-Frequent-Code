@@ -82,3 +82,11 @@ df3 <- df2 %>%
                           )
   )
 ```
+
+#### 날짜 Sequence 만들기
+```r
+from<-as.Date("2011/01/01")
+to<-as.Date("2019/12/31")
+window<-as.character(seq(from,to,"months"))
+window<-str_sub(window,1,7) %>% str_replace("-","")
+```
