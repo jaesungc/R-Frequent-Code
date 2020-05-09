@@ -1,10 +1,12 @@
 ### 특정한 작업을 수행하는 R script를 규칙적으로 실행하도록 설정하는 샘플 코드
+
+
+#### Case 1. Batch File을 만들어서 동작시키기
+
 Encoding 문제로 인해서 3단계로 작업을 했었음. 이보다 더 간단하게 설정하는 방법이 있을 수도 있지만 참고자료로 남겨둠. <br>
 1. call script를 실행하는 batch file
 2. script를 call하는 script
 3. mian script
-
-#### Case 1. Batch File을 만들어서 동작시키기
 
 ##### 1. Run a batch file in CMD or using windows task scheduler: **run_script.bat**
 ```
@@ -41,34 +43,34 @@ rmarkdown::render('file_name.Rmd', output_file=outfile)
 library(taskscheduleR)
 
 ## 0. Schedule a task
-report_auto = file.path("D:/R_Project/Daily_report/Run_daily_report.R") 
+letter_auto = file.path("D:/R_Project/Daily_report/Run_daily_letter.R") 
 
 ## Daily
-taskscheduler_create(taskname = "Daily_report", rscript = report_auto,
+taskscheduler_create(taskname = "Daily_letter", rscript = letter_auto,
                      schedule = "DAILY", 
                      starttime = "19:15", 
                      startdate = format(Sys.Date(), "%Y/%m/%d"))
 
 # Hourly
-taskscheduler_create(taskname = "Daily_report_hourly", rscript = report_auto,
+taskscheduler_create(taskname = "Daily_letter_hourly", rscript = letter_auto,
                      schedule = "HOURLY",
                      starttime = format("14:00"),
                      startdate = format(Sys.Date(), "%Y/%m/%d"),
                      modifier = 1)
 
 # Minute으로 test
-taskscheduler_create(taskname = "Daily_report_minute", rscript = report_auto,
+taskscheduler_create(taskname = "Daily_letter_minute", rscript = letter_auto,
                      schedule = "MINUTE",
                      starttime = format(Sys.time() + 62, "%H:%M"),
                      startdate = format(Sys.time(), ""),
                      modifier = 3)
 
-taskscheduler_delete("Daily_report")
-taskscheduler_delete("Daily_report_hourly")
-taskscheduler_delete("Daily_report_minute")
+taskscheduler_delete("Daily_letter")
+taskscheduler_delete("Daily_letter_hourly")
+taskscheduler_delete("Daily_letter_minute")
 
 alltasks <- taskscheduler_ls()
-check.task <- subset(alltasks, TaskName %in% c("Daily_report"))
+check.task <- subset(alltasks, TaskName %in% c("Daily_letter"))
 ```
 
 ##### 2. Call R script in R: **call_R_script.R**
