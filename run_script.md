@@ -4,7 +4,9 @@ Encoding 문제로 인해서 3단계로 작업을 했었음. 이보다 더 간�
 2. script를 call하는 script
 3. mian script
 
-#### 1. Run a batch file in CMD or using windows task scheduler: **run_script.bat**
+#### Case 1. Batch File을 만들어서 동작시키기
+
+##### 1. Run a batch file in CMD or using windows task scheduler: **run_script.bat**
 ```
 d:
 cd D:\Folder_Name
@@ -15,7 +17,7 @@ R CMD BATCH "call_R_script.R"
 환경변수 PATH에 특정 폴더를 추가하는 방법에 대한 상세한 설명은 아래 블로그 글을 참고하면 됨 <br>
 [환경변수에 실행 파일이 들어있는 폴더를 PATH에 추가하기](https://rootblog.tistory.com/206)
 
-#### 2. Call R script in R: **call_R_script.R**
+##### 2. Call R script in R: **call_R_script.R**
 ```r
 setwd("D:/Folder_Name")
 source('main_script.R', encoding = 'UTF-8', echo=TRUE)
@@ -23,9 +25,55 @@ source('main_script.R', encoding = 'UTF-8', echo=TRUE)
 
 <br>
 
-### R Markdwon으로 작성된 Rmd 파일을 실행시키기
+#### R Markdwon으로 작성된 Rmd 파일을 실행시키기
 ```r
 today <- format(Sys.Date(),"%Y%m%d")
 outfile <- str_c("Daily_Report_", today, ".html")
 rmarkdown::render('file_name.Rmd', output_file=outfile)
 ```
+
+
+#### Case 2. scheduleR 라이브러리를 사용해서 동작시키기 (call script에 한글이 있으면 인코딩 문제가 발생할 수 있음)
+
+##### 1. scheduleR로 task 등록하기
+(R-Studio add-in에서 "Schedule R scripts on Windows"를 열어서 설정할 수도 있음)
+```r
+library(taskscheduleR)
+
+## 0. Schedule a task
+report_auto = file.path("D:/R_Project/Daily_report/Run_daily_report.R") 
+
+## Daily
+taskscheduler_create(taskname = "Daily_report", rscript = report_auto,
+                     schedule = "DAILY", 
+                     starttime = "19:15", 
+                     startdate = format(Sys.Date(), "%Y/%m/%d"))
+
+# Hourly
+taskscheduler_create(taskname = "Daily_report_hourly", rscript = report_auto,
+                     schedule = "HOURLY",
+                     starttime = format("14:00"),
+                     startdate = format(Sys.Date(), "%Y/%m/%d"),
+                     modifier = 1)
+
+# Minute으로 test
+taskscheduler_create(taskname = "Daily_report_minute", rscript = report_auto,
+                     schedule = "MINUTE",
+                     starttime = format(Sys.time() + 62, "%H:%M"),
+                     startdate = format(Sys.time(), ""),
+                     modifier = 3)
+
+taskscheduler_delete("Daily_report")
+taskscheduler_delete("Daily_report_hourly")
+taskscheduler_delete("Daily_report_minute")
+
+alltasks <- taskscheduler_ls()
+check.task <- subset(alltasks, TaskName %in% c("Daily_report"))
+```
+
+##### 2. Call R script in R: **call_R_script.R**
+```r
+setwd("D:/Folder_Name")
+source('main_script.R', encoding = 'UTF-8', echo=TRUE)
+```
+
