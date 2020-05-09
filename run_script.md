@@ -34,6 +34,7 @@ outfile <- str_c("Daily_Report_", today, ".html")
 rmarkdown::render('file_name.Rmd', output_file=outfile)
 ```
 
+<br>
 
 #### Case 2. scheduleR 라이브러리를 사용해서 동작시키기 (call script에 한글이 있으면 인코딩 문제가 발생할 수 있음)
 
