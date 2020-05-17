@@ -60,24 +60,24 @@ df2 <- df1 %>%
 today.seoul <- Sys.time() %>% with_tz(tzone="Asia/Seoul")
 today.seoul
 
-today.minus0 <- today.seoul %m-% days(0) %>% format("%Y.%m.%d.")
-today.minus1 <- today.seoul %m-% days(1) %>% format("%Y.%m.%d.")
-today.minus2 <- today.seoul %m-% days(2) %>% format("%Y.%m.%d.")
-today.minus3 <- today.seoul %m-% days(3) %>% format("%Y.%m.%d.")
-today.minus4 <- today.seoul %m-% days(4) %>% format("%Y.%m.%d.")
-today.minus5 <- today.seoul %m-% days(5) %>% format("%Y.%m.%d.")
-today.minus6 <- today.seoul %m-% days(6) %>% format("%Y.%m.%d.")
-today.minus7 <- today.seoul %m-% days(7) %>% format("%Y.%m.%d.")
+today.m0 <- today.seoul %m-% days(0) %>% format("%Y.%m.%d.")
+today.m1 <- today.seoul %m-% days(1) %>% format("%Y.%m.%d.")
+today.m2 <- today.seoul %m-% days(2) %>% format("%Y.%m.%d.")
+today.m3 <- today.seoul %m-% days(3) %>% format("%Y.%m.%d.")
+today.m4 <- today.seoul %m-% days(4) %>% format("%Y.%m.%d.")
+today.m5 <- today.seoul %m-% days(5) %>% format("%Y.%m.%d.")
+today.m6 <- today.seoul %m-% days(6) %>% format("%Y.%m.%d.")
+today.m7 <- today.seoul %m-% days(7) %>% format("%Y.%m.%d.")
 
 df3 <- df2 %>% 
-  mutate(date = case_when(str_detect(date, ".*시간 전") ~ today.minus0,
-                          date=="1일 전" ~ today.minus1,
-                          date=="2일 전" ~ today.minus2,
-                          date=="3일 전" ~ today.minus3,
-                          date=="4일 전" ~ today.minus4,
-                          date=="5일 전" ~ today.minus5,
-                          date=="6일 전" ~ today.minus6,
-                          date=="7일 전" ~ today.minus7,
+  mutate(date = case_when(str_detect(date, ".*시간 전") ~ today.m0,
+                          date=="1일 전" ~ today.m1,
+                          date=="2일 전" ~ today.m2,
+                          date=="3일 전" ~ today.m3,
+                          date=="4일 전" ~ today.m4,
+                          date=="5일 전" ~ today.m5,
+                          date=="6일 전" ~ today.m6,
+                          date=="7일 전" ~ today.m7,
                           TRUE ~ date
                           )
   )
