@@ -83,6 +83,17 @@ df3 <- df2 %>%
   )
 ```
 
+#### 날짜 형식 통일하기
+```r
+tab <- rbind(tab1, tab2) %>%
+  mutate(date = case_when(str_detect(date, ".*시간 전") ~ str_c(today.m0, ", ", date),
+                          TRUE ~ str_remove_all(date, "\\s") %>% 
+                            as.Date(format="%Y.%m.%d") %>% 
+                            format("%Y.%m.%d")
+                          )
+  ) %>% 
+  arrange(desc(date))
+```
 #### 날짜 Sequence 만들기
 ```r
 from<-as.Date("2011/01/01")
