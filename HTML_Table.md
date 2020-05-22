@@ -5,31 +5,40 @@
 library(knitr)
 library(kable_extra)
 
-df.out <- mtcars %>% head(20)
+df <- mtcars %>% 
+  mutate(model=row.names(.)) %>% 
+  head(30) 
+
+df.out <- df %>% 
+  select(model, mpg, cyl, disp, hp)
 
 df.out %>% 
   kable(format="html", escape=FALSE) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
-  column_spec(1, width = "10em") %>%
-  column_spec(2, width = "6em") %>%
-  column_spec(3, width = "40em") 
-  
+  column_spec(1, width = "8em") %>%
+  column_spec(2, width = "4em") %>%
+  column_spec(3, width = "4em") %>% 
+  column_spec(4, width = "4em") %>% 
+  column_spec(5, width = "4em") 
+
 ## HTML 파일로 저장하기
 outfile <- "filename.html"
 df.out %>%
   kable(format="html", escape=FALSE) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
-  column_spec(1, width = "10em") %>%
-  column_spec(2, width = "6em") %>%
-  column_spec(3, width = "40em") %>% 
+  column_spec(1, width = "8em") %>%
+  column_spec(2, width = "4em") %>%
+  column_spec(3, width = "4em") %>% 
+  column_spec(4, width = "4em") %>% 
+  column_spec(5, width = "4em") 
   save_kable(file = outfile, self_contained = T)
 ```
 
-### DT 패키지 사용
+#### DT 패키지 사용
 ```r
 library(DT)
 
-df.out <- mtcars %>% head(20)
+df.out <- mtcars %>% head(30)
 
 df.out %>% 
   datatable(escape=FALSE)
