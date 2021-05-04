@@ -6,7 +6,9 @@ res %>% html_table(fill=TRUE) ## Encoding 문제가 있어서 table이 바로 �
 박찬엽씨가 하듯이 Sys.setlocale을 변경하면 일부 해결되기도 함.
 ```r
 Sys.setlocale("LC_ALL", "C")
-tab <- res %>% html_nodes(xpath="//table") %>% .[[1]] %>% 
+tab <- res %>% 
+  html_nodes(xpath="//table") %>% 
+  .[[1]] %>% 
   html_table(fill=TRUE)
 Sys.setlocale("LC_ALL", "Korean_Korea.949")
 ```
@@ -14,7 +16,8 @@ Sys.setlocale("LC_ALL", "Korean_Korea.949")
 ### <U+00A0> 제거하고, 필요한 행만 남기기
 ```r
 names(tab) <- LETTERS[1:dim(tab)[2]]
-tab2 <- tab %>% mutate_all( ~ str_replace_all(., "[[:space:]]", "")) %>% 
+tab2 <- tab %>% 
+  mutate_all( ~ str_replace_all(., "[[:space:]]", "")) %>% 
   slice(3:5)
 tab2
 ```
@@ -38,7 +41,7 @@ names(tab) <- str_c("v",(1:n.col))
 ```r
 Sys.setlocale("LC_ALL", "English")
 
-url = 'http://kind.krx.co.kr/disclosure/todaydisclosure.do'
+url = 'https://dev-kind.krx.co.kr/disclosure/todaydisclosure.do'
 data = POST(url, body =
               list(
                 method = 'searchTodayDisclosureSub',
